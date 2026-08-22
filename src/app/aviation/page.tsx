@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { MapPin, Camera, Search } from 'lucide-react';
-import { DEMO_AIRCRAFT, AIRCRAFT_CATEGORIES, AIRCRAFT_MANUFACTURERS } from '@/lib/constants';
+import { DEMO_AIRCRAFT, AIRCRAFT_CATEGORIES } from '@/lib/constants';
 import { useCurrency } from '@/lib/currency-context';
 import { getPriceInCurrency } from '@/lib/currency';
 
