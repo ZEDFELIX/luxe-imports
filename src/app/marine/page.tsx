@@ -4,11 +4,13 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { MapPin, Search } from 'lucide-react';
+import { MapPin, Camera, Search } from 'lucide-react';
 import { DEMO_MARINE, MARINE_CATEGORIES } from '@/lib/constants';
-import { formatCurrency } from '@/lib/utils';
+import { useCurrency } from '@/lib/currency-context';
+import { getPriceInCurrency } from '@/lib/currency';
 
 export default function MarinePage() {
+  const { currency } = useCurrency();
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('');
 
@@ -90,6 +92,9 @@ export default function MarinePage() {
                       </>
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-dark/40 to-transparent" />
+                    <div className="absolute top-3 right-3 flex items-center gap-1 bg-black/70 backdrop-blur-sm px-2 py-1 text-[10px] text-white/80 z-10">
+                      <Camera size={10} /> {vessel.images?.length || 0} Photos
+                    </div>
                   </div>
                   <div className="p-5">
                     <p className="text-[10px] tracking-[0.15em] uppercase text-gold/50 mb-2">{vessel.category}</p>
@@ -99,7 +104,7 @@ export default function MarinePage() {
                       <div className="flex items-center gap-1.5 text-muted/40">
                         <MapPin size={12} /><span className="text-[10px]">{vessel.location}</span>
                       </div>
-                      <span className="text-sm text-gold">{formatCurrency(vessel.price)}</span>
+                      <span className="text-sm text-gold">{getPriceInCurrency(vessel.price, currency)}</span>
                     </div>
                   </div>
                 </Link>

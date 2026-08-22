@@ -1,0 +1,1 @@
+export { RelatedListings } from './RelatedListings';

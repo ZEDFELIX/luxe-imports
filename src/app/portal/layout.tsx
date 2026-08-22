@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { LayoutDashboard, FileText, Receipt, FileSpreadsheet, Truck, FolderOpen, Heart, MessageSquare, User, Settings, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { AuthGuard } from '@/components/ui/AuthGuard';
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   LayoutDashboard, FileText, Receipt, FileSpreadsheet, Truck, FolderOpen, Heart, MessageSquare, User, Settings,
@@ -27,7 +28,8 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
   const pathname = usePathname();
 
   return (
-    <div className="pt-16 sm:pt-20 bg-dark min-h-screen">
+    <AuthGuard>
+      <div className="pt-16 sm:pt-20 bg-dark min-h-screen">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
           {/* Sidebar */}
@@ -64,5 +66,6 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
         </div>
       </div>
     </div>
+    </AuthGuard>
   );
 }

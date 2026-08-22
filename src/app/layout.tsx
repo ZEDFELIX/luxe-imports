@@ -3,7 +3,11 @@ import { Inter, Cormorant_Garamond } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { BottomNav } from '@/components/ui/BottomNav';
 import { PWAInstall } from '@/components/PWAInstall';
+import { CurrencyProvider } from '@/lib/currency-context';
+import { CartProvider } from '@/lib/cart-context';
+import { RecentlyViewedProvider } from '@/lib/recently-viewed';
 import './globals.css';
 
 const inter = Inter({
@@ -86,10 +90,17 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
       <body className="min-h-screen bg-dark text-white antialiased">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <PWAInstall />
+        <CurrencyProvider>
+          <CartProvider>
+            <RecentlyViewedProvider>
+              <Navbar />
+              <main className="flex-1 pb-16 lg:pb-0">{children}</main>
+              <Footer />
+              <BottomNav />
+              <PWAInstall />
+            </RecentlyViewedProvider>
+          </CartProvider>
+        </CurrencyProvider>
         <Toaster
           position="bottom-right"
           toastOptions={{

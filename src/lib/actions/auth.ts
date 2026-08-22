@@ -1,6 +1,6 @@
 'use server'
 
-import { hashPassword, verifyPassword, createSession, deleteSession, getUserByEmail, createUser } from '@/lib/auth'
+import { hashPassword, verifyPassword, createSession, deleteSession, getSession, getUserByEmail, createUser } from '@/lib/auth'
 import { initDatabase } from '@/lib/db/schema'
 import { isDemoMode } from '@/lib/db'
 import { revalidatePath } from 'next/cache'
@@ -52,4 +52,11 @@ export async function register(email: string, password: string, fullName: string
 export async function logout() {
   await deleteSession()
   return { success: true }
+}
+
+export async function checkSession() {
+  if (isDemoMode()) {
+    return { id: 'demo-admin', email: 'admin@luxeimports.com', full_name: 'Admin User', role: 'ADMIN' }
+  }
+  return getSession()
 }

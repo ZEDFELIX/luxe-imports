@@ -4,11 +4,13 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { MapPin, Search, SlidersHorizontal, X } from 'lucide-react';
+import { MapPin, Camera, Search, SlidersHorizontal, X } from 'lucide-react';
 import { DEMO_VEHICLES, MANUFACTURERS, VEHICLE_CATEGORIES, COUNTRIES } from '@/lib/constants';
-import { formatCurrency } from '@/lib/utils';
+import { useCurrency } from '@/lib/currency-context';
+import { getPriceInCurrency, convertPrice } from '@/lib/currency';
 
 export default function AutomotivePage() {
+  const { currency } = useCurrency();
   const [searchQuery, setSearchQuery] = useState('');
   const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState({
@@ -28,8 +30,16 @@ export default function AutomotivePage() {
     if (filters.country && v.origin_country !== filters.country) return false;
     if (filters.yearFrom && v.year < parseInt(filters.yearFrom)) return false;
     if (filters.yearTo && v.year > parseInt(filters.yearTo)) return false;
-    if (filters.priceMin && v.price < parseInt(filters.priceMin)) return false;
-    if (filters.priceMax && v.price > parseInt(filters.priceMax)) return false;
+    if (filters.priceMin) {
+      const minInCurrency = parseFloat(filters.priceMin);
+      const priceInCurrency = convertPrice(v.price, currency);
+      if (priceInCurrency < minInCurrency) return false;
+    }
+    if (filters.priceMax) {
+      const maxInCurrency = parseFloat(filters.priceMax);
+      const priceInCurrency = convertPrice(v.price, currency);
+      if (priceInCurrency > maxInCurrency) return false;
+    }
     return true;
   });
 
@@ -137,7 +147,7 @@ export default function AutomotivePage() {
                 type="text"
                 value={filters.priceMax}
                 onChange={(e) => setFilters({ ...filters, priceMax: e.target.value })}
-                placeholder="Max price"
+                placeholder={`Max price (${currency})`}
                 className="bg-dark-card border border-border/30 px-3 py-2.5 text-xs text-white placeholder:text-muted/30 focus:border-gold/50 focus:outline-none"
               />
               {hasFilters && (
@@ -190,6 +200,9 @@ export default function AutomotivePage() {
                       </>
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-dark/40 to-transparent" />
+                    <div className="absolute top-3 right-3 flex items-center gap-1 bg-black/70 backdrop-blur-sm px-2 py-1 text-[10px] text-white/80 z-10">
+                      <Camera size={10} /> {vehicle.images?.length || 0} Photos
+                    </div>
                     {vehicle.featured && (
                       <span className="absolute top-3 left-3 px-2 py-1 text-[9px] tracking-[0.15em] uppercase bg-gold/20 text-gold border border-gold/30 z-10">
                         Featured
@@ -207,7 +220,7 @@ export default function AutomotivePage() {
                         <MapPin size={12} />
                         <span className="text-[10px]">{vehicle.location}</span>
                       </div>
-                      <span className="text-sm text-gold">{formatCurrency(vehicle.price)}</span>
+                      <span className="text-sm text-gold">{getPriceInCurrency(vehicle.price, currency)}</span>
                     </div>
                   </div>
                 </Link>

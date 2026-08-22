@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { MapPin, ArrowRight } from 'lucide-react';
+import { MapPin, Camera, ArrowRight } from 'lucide-react';
 import { DEMO_VEHICLES, DEMO_AIRCRAFT, DEMO_MARINE } from '@/lib/constants';
 import { formatCurrency } from '@/lib/utils';
 
@@ -32,6 +32,7 @@ export function FeaturedCollection() {
           href: `/automotive/${v.slug}`,
           featured: v.featured,
           image: v.images[0] || '',
+          photoCount: v.images?.length || 0,
         }));
       case 'aviation':
         return DEMO_AIRCRAFT.map((a) => ({
@@ -44,6 +45,7 @@ export function FeaturedCollection() {
           href: `/aviation/${a.slug}`,
           featured: a.featured,
           image: a.images[0] || '',
+          photoCount: a.images?.length || 0,
         }));
       case 'marine':
         return DEMO_MARINE.map((m) => ({
@@ -56,6 +58,7 @@ export function FeaturedCollection() {
           href: `/marine/${m.slug}`,
           featured: m.featured,
           image: m.images[0] || '',
+          photoCount: m.images?.length || 0,
         }));
     }
   };
@@ -128,6 +131,9 @@ export function FeaturedCollection() {
                     </div>
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent" />
+                  <div className="absolute top-3 left-3 flex items-center gap-1 bg-black/70 backdrop-blur-sm px-2 py-1 text-[10px] text-white/80 z-10">
+                    <Camera size={10} /> {item.photoCount} Photos
+                  </div>
                   {item.featured && (
                     <div className="absolute top-3 right-3 z-10">
                       <span className="px-2 py-1 text-[9px] tracking-[0.15em] uppercase bg-gold/20 text-gold border border-gold/30">

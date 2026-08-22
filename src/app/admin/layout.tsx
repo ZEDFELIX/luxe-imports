@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { LayoutDashboard, FileText, Package, Users, Truck, Receipt, ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { AuthGuard } from '@/components/ui/AuthGuard';
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   LayoutDashboard, FileText, Package, Users, Truck, Receipt,
@@ -22,7 +23,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const pathname = usePathname();
 
   return (
-    <div className="pt-16 sm:pt-20 bg-dark min-h-screen">
+    <AuthGuard requiredRole="ADMIN">
+      <div className="pt-16 sm:pt-20 bg-dark min-h-screen">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
           <aside className="w-full lg:w-56 shrink-0">
@@ -58,5 +60,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
       </div>
     </div>
+    </AuthGuard>
   );
 }

@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { NAVIGATION } from '@/lib/constants';
+import { CurrencySelector } from '@/components/ui/CurrencySelector';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,10 +65,11 @@ export function Navbar() {
               ))}
             </div>
 
-            <div className="hidden lg:flex items-center gap-6">
+            <div className="flex items-center gap-4">
+              <CurrencySelector />
               <Link
                 href="/contact"
-                className="px-6 py-2.5 text-[12px] font-medium tracking-[0.15em] uppercase border border-gold/40 text-gold hover:bg-gold hover:text-dark transition-all duration-300"
+                className="hidden lg:block px-6 py-2.5 text-[12px] font-medium tracking-[0.15em] uppercase border border-gold/40 text-gold hover:bg-gold hover:text-dark transition-all duration-300"
               >
                 Request a Quote
               </Link>
