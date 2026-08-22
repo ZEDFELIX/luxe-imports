@@ -23,6 +23,16 @@ export default function AviationPage() {
   return (
     <div className="pt-20 sm:pt-24 bg-dark min-h-screen">
       <section className="relative py-16 sm:py-24 overflow-hidden">
+        <Image
+          src="https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=1920&q=85&auto=format"
+          alt="Private jet flying above the clouds"
+          fill
+          priority
+          className="object-cover opacity-35"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/85 to-dark/45" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/30 via-transparent to-dark" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_30%,rgba(200,169,107,0.06),transparent_60%)]" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
