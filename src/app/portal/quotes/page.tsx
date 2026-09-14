@@ -7,18 +7,18 @@ import { getMyQuotes, updateQuoteStatus } from '@/lib/actions/quotes';
 import toast from 'react-hot-toast';
 
 export default function PortalQuotes() {
+  const isConfigured = !!process.env.NEXT_PUBLIC_SUPABASE_URL && !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder');
   const [quotes, setQuotes] = useState<Record<string, unknown>[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(isConfigured);
 
   useEffect(() => {
-    const isConfigured = process.env.NEXT_PUBLIC_SUPABASE_URL && !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder');
-    if (!isConfigured) { setLoading(false); return; }
+    if (!isConfigured) return;
 
     getMyQuotes()
       .then((data) => setQuotes(data || []))
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, []);
+  }, [isConfigured]);
 
   const handleStatus = async (id: string, status: string) => {
     try {

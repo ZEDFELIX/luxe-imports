@@ -65,6 +65,7 @@ function SearchPageContent() {
   const [query, setQuery] = useState(initialQuery);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- sync controlled input with URL query changes
     setQuery(searchParams.get('q') ?? '');
   }, [searchParams]);
 

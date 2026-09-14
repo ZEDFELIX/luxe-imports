@@ -3,7 +3,6 @@
 import { hashPassword, verifyPassword, createSession, deleteSession, getSession, getUserByEmail, createUser } from '@/lib/auth'
 import { initDatabase } from '@/lib/db/schema'
 import { isDemoMode } from '@/lib/db'
-import { revalidatePath } from 'next/cache'
 
 export async function login(email: string, password: string) {
   if (isDemoMode()) {

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FileText, Users, Truck, Receipt, Package, TrendingUp, Clock, CheckCircle, MessageSquare } from 'lucide-react';
+import { FileText, Users, Truck, Receipt, MessageSquare } from 'lucide-react';
 import { getAdminDashboard } from '@/lib/actions/dashboard';
 
 interface DashboardData {
@@ -15,18 +15,18 @@ interface DashboardData {
 }
 
 export default function AdminDashboard() {
+  const isConfigured = !!process.env.NEXT_PUBLIC_SUPABASE_URL && !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder');
   const [data, setData] = useState<DashboardData | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(isConfigured);
 
   useEffect(() => {
-    const isConfigured = process.env.NEXT_PUBLIC_SUPABASE_URL && !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder');
-    if (!isConfigured) { setLoading(false); return; }
+    if (!isConfigured) return;
 
     getAdminDashboard()
       .then((d) => setData(d))
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, []);
+  }, [isConfigured]);
 
   const stats = [
     { label: 'Total Requests', value: loading ? '...' : String(data?.totalRequests ?? 0), icon: FileText, change: '+3 this week', color: 'text-blue-400' },

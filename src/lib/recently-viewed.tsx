@@ -27,6 +27,7 @@ export function RecentlyViewedProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const saved = localStorage.getItem('luxe-recently-viewed');
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- hydrate recently viewed from localStorage after mount
       if (saved) setItems(JSON.parse(saved));
     } catch {}
   }, []);

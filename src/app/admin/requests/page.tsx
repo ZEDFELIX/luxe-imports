@@ -7,20 +7,20 @@ import { getAllRequests, updateRequestStatus } from '@/lib/actions/requests';
 import { REQUEST_STATUSES } from '@/lib/constants';
 
 export default function AdminRequests() {
+  const isConfigured = !!process.env.NEXT_PUBLIC_SUPABASE_URL && !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder');
   const [requests, setRequests] = useState<Record<string, unknown>[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(isConfigured);
   const [search, setSearch] = useState('');
   const [updatingId, setUpdatingId] = useState<string | null>(null);
 
   useEffect(() => {
-    const isConfigured = process.env.NEXT_PUBLIC_SUPABASE_URL && !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder');
-    if (!isConfigured) { setLoading(false); return; }
+    if (!isConfigured) return;
 
     getAllRequests()
       .then((data) => setRequests(data || []))
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, []);
+  }, [isConfigured]);
 
   const filtered = requests.filter((req) => {
     if (!search) return true;
@@ -38,11 +38,6 @@ export default function AdminRequests() {
       setRequests((prev) => prev.map((r) => r.id === id ? { ...r, status } : r));
     } catch {}
     setUpdatingId(null);
-  };
-
-  const getStatusLabel = (status: string) => {
-    const found = REQUEST_STATUSES.find((s) => s.value === status);
-    return found?.label || status;
   };
 
   return (

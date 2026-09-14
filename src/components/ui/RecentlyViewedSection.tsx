@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Clock, ArrowRight } from 'lucide-react';
+import { Clock } from 'lucide-react';
 import { useRecentlyViewed } from '@/lib/recently-viewed';
 import { useCurrency } from '@/lib/currency-context';
 import { getPriceInCurrency } from '@/lib/currency';

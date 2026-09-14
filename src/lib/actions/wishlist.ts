@@ -1,5 +1,6 @@
 'use server'
 
+import { v4 as uuidv4 } from 'uuid'
 import { getSession } from '@/lib/auth'
 import { initDatabase } from '@/lib/db/schema'
 import getDb, { isDemoMode } from '@/lib/db'
@@ -41,7 +42,6 @@ export async function toggleWishlist(assetType: string, assetId: string) {
     revalidatePath('/portal/wishlist')
     return { added: false }
   } else {
-    const { v4: uuidv4 } = require('uuid')
     const id = uuidv4()
     db.prepare(
       'INSERT INTO wishlists (id, user_id, asset_type, asset_id) VALUES (?, ?, ?, ?)'

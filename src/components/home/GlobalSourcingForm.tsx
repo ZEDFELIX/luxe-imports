@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { ASSET_TYPES, COUNTRIES } from '@/lib/constants';
 import { submitSourcingRequest } from '@/lib/actions/requests';
 import toast from 'react-hot-toast';

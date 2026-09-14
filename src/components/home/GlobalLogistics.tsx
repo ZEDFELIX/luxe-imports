@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Truck, Plane, Ship, FileCheck, ClipboardList, FileText, MapPin } from 'lucide-react';
 
 const services = [
   'International Shipping',

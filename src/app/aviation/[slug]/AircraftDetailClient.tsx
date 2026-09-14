@@ -31,7 +31,7 @@ interface Aircraft {
   location: string;
   condition?: string;
   serial_number?: string;
-  specifications?: { [key: string]: string };
+  specifications?: Record<string, string | undefined>;
   estimated_shipping?: number;
   images: string[];
 }

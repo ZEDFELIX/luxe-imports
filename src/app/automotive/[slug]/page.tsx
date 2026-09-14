@@ -26,5 +26,5 @@ export default async function VehicleDetailPage({ params }: PageProps) {
   const vehicle = DEMO_VEHICLES.find((v) => v.slug === slug);
   if (!vehicle) notFound();
 
-  return <VehicleDetailClient vehicle={vehicle as any} />;
+  return <VehicleDetailClient vehicle={vehicle} />;
 }

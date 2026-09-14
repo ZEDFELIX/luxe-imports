@@ -6,18 +6,18 @@ import { FileSpreadsheet, Download } from 'lucide-react';
 import { getMyInvoices } from '@/lib/actions/invoices';
 
 export default function PortalInvoices() {
+  const isConfigured = !!process.env.NEXT_PUBLIC_SUPABASE_URL && !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder');
   const [invoices, setInvoices] = useState<Record<string, unknown>[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(isConfigured);
 
   useEffect(() => {
-    const isConfigured = process.env.NEXT_PUBLIC_SUPABASE_URL && !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder');
-    if (!isConfigured) { setLoading(false); return; }
+    if (!isConfigured) return;
 
     getMyInvoices()
       .then((data) => setInvoices(data || []))
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, []);
+  }, [isConfigured]);
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>

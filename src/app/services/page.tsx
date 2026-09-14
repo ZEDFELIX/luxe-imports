@@ -4,10 +4,6 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight, Globe, ArrowLeftRight, Truck, FileCheck, Search, ClipboardCheck, Headphones, Crown } from 'lucide-react';
 
-const iconMap: Record<string, React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>> = {
-  Globe, ArrowLeftRight, Truck, FileCheck, Search, ClipboardCheck, Headphones, Crown,
-};
-
 const services = [
   { icon: Globe, title: 'Global Sourcing', description: 'We leverage an extensive worldwide network to locate and acquire the finest luxury automobiles, aircraft and marine vessels. Our sourcing specialists operate across 50+ countries.', details: ['Private collection access', 'Dealer network sourcing', 'Auction representation', 'Factory orders'] },
   { icon: ArrowLeftRight, title: 'Import & Export', description: 'Seamless cross-border transactions with full compliance to international trade regulations. We handle every aspect of the import/export process.', details: ['Trade compliance', 'Documentation', 'Tax optimization', 'Bilateral agreements'] },

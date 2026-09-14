@@ -3,7 +3,6 @@
 import { getSession } from '@/lib/auth'
 import { initDatabase } from '@/lib/db/schema'
 import getDb, { isDemoMode } from '@/lib/db'
-import { revalidatePath } from 'next/cache'
 
 export async function getMyInvoices() {
   if (isDemoMode()) return []

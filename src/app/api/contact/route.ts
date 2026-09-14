@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { v4 as uuidv4 } from 'uuid'
 import { initDatabase } from '@/lib/db/schema'
 import getDb, { isDemoMode } from '@/lib/db'
 
@@ -12,7 +13,6 @@ export async function POST(request: NextRequest) {
   initDatabase()
   const db = getDb()
 
-  const { v4: uuidv4 } = require('uuid')
   const id = uuidv4()
 
   db.prepare(`

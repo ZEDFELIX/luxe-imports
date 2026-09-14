@@ -7,14 +7,14 @@ import { getMessages, sendMessage, markAsRead } from '@/lib/actions/messages';
 import toast from 'react-hot-toast';
 
 export default function PortalMessages() {
+  const isConfigured = !!process.env.NEXT_PUBLIC_SUPABASE_URL && !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder');
   const [messages, setMessages] = useState<Record<string, unknown>[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(isConfigured);
   const [newMessage, setNewMessage] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const isConfigured = process.env.NEXT_PUBLIC_SUPABASE_URL && !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder');
-    if (!isConfigured) { setLoading(false); return; }
+    if (!isConfigured) return;
 
     getMessages()
       .then((data) => {
@@ -26,7 +26,7 @@ export default function PortalMessages() {
       })
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, []);
+  }, [isConfigured]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });

@@ -61,6 +61,7 @@ export default function AdminInventory() {
     const saved = localStorage.getItem('luxe-admin-' + tab);
     let custom: Record<string, unknown>[] = [];
     if (saved) { try { custom = JSON.parse(saved); } catch {} }
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- recombine saved custom items with demo data on tab change
     setItems([...custom, ...demo as unknown as Record<string, unknown>[]]);
   }, [tab]);
 
@@ -71,7 +72,7 @@ export default function AdminInventory() {
 
   function persist(all: Record<string, unknown>[]) {
     const demo = tab === 'vehicles' ? DEMO_VEHICLES : tab === 'aircraft' ? DEMO_AIRCRAFT : DEMO_MARINE;
-    const custom = all.filter(i => !demo.some((d: any) => d.slug === i.slug));
+    const custom = all.filter(i => !demo.some((d) => d.slug === i.slug));
     localStorage.setItem('luxe-admin-' + tab, JSON.stringify(custom));
     setItems([...custom, ...demo as unknown as Record<string, unknown>[]]);
   }
@@ -83,7 +84,7 @@ export default function AdminInventory() {
       persist(items.map(i => String(i.slug) === editSlug ? { ...i, ...form, slug } : i));
       toast.success('Vehicle updated');
     } else {
-      persist([{ ...form, slug, images: form.images.length ? form.images : ['/images/placeholder.svg'] } as any, ...items]);
+      persist([{ ...form, slug, images: form.images.length ? form.images : ['/images/placeholder.svg'] }, ...items]);
       toast.success('Vehicle added');
     }
     setShowForm(false); setEditSlug(null); setForm(EMPTY);
@@ -116,7 +117,7 @@ export default function AdminInventory() {
     persist(items.map(i => String(i.slug) === slug ? { ...i, published: !i.published } : i));
   }
 
-  const set = (k: string, v: any) => setForm(f => ({ ...f, [k]: v }));
+  const set = (k: string, v: VF[keyof VF]) => setForm(f => ({ ...f, [k]: v }));
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
@@ -207,7 +208,7 @@ export default function AdminInventory() {
                   <div key={f.key} className={f.key === 'title' ? 'col-span-2' : ''}>
                     <label className="block text-[10px] tracking-[0.1em] uppercase text-muted/50 mb-1">{f.label}{f.required && ' *'}</label>
                     <input type={f.type || 'text'}
-                      value={String((form as any)[f.key] || '')}
+                      value={String(form[f.key as keyof VF] || '')}
                       onChange={e => set(f.key, f.type === 'number' ? Number(e.target.value) : e.target.value)}
                       className="w-full bg-dark border border-border/30 px-3 py-2.5 text-sm text-white focus:border-gold/50 focus:outline-none" />
                   </div>

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Heart, Trash2, ArrowRight, ShoppingCart } from 'lucide-react';
+import { Heart, Trash2, ArrowRight } from 'lucide-react';
 import { useCart } from '@/lib/cart-context';
 import { useCurrency } from '@/lib/currency-context';
 import { getPriceInCurrency } from '@/lib/currency';

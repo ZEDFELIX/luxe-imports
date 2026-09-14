@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Check, Plus, X, ArrowRight } from 'lucide-react';
+import { Check, Plus } from 'lucide-react';
 import { DEMO_VEHICLES } from '@/lib/constants';
 import { useCurrency } from '@/lib/currency-context';
 import { getPriceInCurrency } from '@/lib/currency';

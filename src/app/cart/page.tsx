@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Trash2, ArrowRight, ShoppingBag } from 'lucide-react';
 import { useCart } from '@/lib/cart-context';
 import { useCurrency } from '@/lib/currency-context';
-import { getPriceInCurrency, convertPrice } from '@/lib/currency';
+import { getPriceInCurrency } from '@/lib/currency';
 import { motion } from 'framer-motion';
 
 export default function CartPage() {

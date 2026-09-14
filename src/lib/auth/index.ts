@@ -1,5 +1,6 @@
 import { SignJWT, jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
+import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcryptjs';
 import getDb from '@/lib/db';
 import { initDatabase } from '@/lib/db/schema';
@@ -82,7 +83,6 @@ export function getUserById(id: string) {
 export function createUser(email: string, passwordHash: string, fullName: string) {
   initDatabase();
   const db = getDb();
-  const { v4: uuidv4 } = require('uuid');
   const id = uuidv4();
   db.prepare(
     'INSERT INTO users (id, email, password_hash, full_name) VALUES (?, ?, ?, ?)'

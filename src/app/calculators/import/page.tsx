@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Truck, Calculator } from 'lucide-react';
 import { useCurrency } from '@/lib/currency-context';
-import { getPriceInCurrency, convertPrice } from '@/lib/currency';
+import { getPriceInCurrency } from '@/lib/currency';
 
 const SOURCE_COUNTRIES = ['Japan', 'UAE', 'United Kingdom', 'Germany', 'United States', 'South Africa'];
 const DEST_COUNTRIES = [

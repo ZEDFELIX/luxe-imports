@@ -17,5 +17,5 @@ export default async function AircraftDetailPage({ params }: PageProps) {
   const { slug } = await params;
   const aircraft = DEMO_AIRCRAFT.find((a) => a.slug === slug);
   if (!aircraft) notFound();
-  return <AircraftDetailClient aircraft={aircraft as any} />;
+  return <AircraftDetailClient aircraft={aircraft} />;
 }

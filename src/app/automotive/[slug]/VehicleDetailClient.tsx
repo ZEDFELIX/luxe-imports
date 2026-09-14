@@ -1,9 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, MapPin, Camera, ArrowRight, ChevronRight } from 'lucide-react';
+import { MapPin, Camera, ArrowRight, ChevronRight } from 'lucide-react';
 import { ImageGallery } from '@/components/gallery';
 import { RelatedListings } from '@/components/listings';
 import { DEMO_VEHICLES } from '@/lib/constants';
@@ -34,7 +33,7 @@ interface Vehicle {
   origin_country: string;
   location: string;
   condition?: string;
-  specifications?: { [key: string]: string };
+  specifications?: Record<string, string | undefined>;
   estimated_shipping?: number;
   images: string[];
 }

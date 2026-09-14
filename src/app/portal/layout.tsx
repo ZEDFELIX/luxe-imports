@@ -2,8 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion } from 'framer-motion';
-import { LayoutDashboard, FileText, Receipt, FileSpreadsheet, Truck, FolderOpen, Heart, MessageSquare, User, Settings, LogOut } from 'lucide-react';
+import { LayoutDashboard, FileText, Receipt, FileSpreadsheet, Truck, FolderOpen, Heart, MessageSquare, User, Settings } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AuthGuard } from '@/components/ui/AuthGuard';
 

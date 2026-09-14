@@ -1,5 +1,6 @@
 'use server'
 
+import { v4 as uuidv4 } from 'uuid'
 import { initDatabase } from '@/lib/db/schema'
 import getDb, { isDemoMode } from '@/lib/db'
 import { revalidatePath } from 'next/cache'
@@ -25,7 +26,6 @@ export async function submitContact(formData: {
   initDatabase()
   const db = getDb()
 
-  const { v4: uuidv4 } = require('uuid')
   const id = uuidv4()
 
   db.prepare(`

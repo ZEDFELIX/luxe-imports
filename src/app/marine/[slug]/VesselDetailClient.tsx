@@ -31,7 +31,7 @@ interface Vessel {
   origin_country: string;
   location: string;
   condition?: string;
-  specifications?: { [key: string]: string };
+  specifications?: Record<string, string | undefined>;
   estimated_shipping?: number;
   images: string[];
 }

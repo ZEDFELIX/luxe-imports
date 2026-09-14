@@ -1,5 +1,6 @@
 'use server'
 
+import { v4 as uuidv4 } from 'uuid'
 import { getSession } from '@/lib/auth'
 import { initDatabase } from '@/lib/db/schema'
 import getDb, { isDemoMode } from '@/lib/db'
@@ -25,7 +26,6 @@ export async function createSourcingRequest(formData: {
   initDatabase()
   const db = getDb()
 
-  const { v4: uuidv4 } = require('uuid')
   const id = uuidv4()
   const reference_number = `LR-${Date.now().toString(36).toUpperCase()}`
 

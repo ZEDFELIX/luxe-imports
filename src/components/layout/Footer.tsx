@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { NAVIGATION, SITE_CONFIG } from '@/lib/constants';
+import { SITE_CONFIG } from '@/lib/constants';
 
 const footerLinks = {
   company: [

@@ -17,5 +17,5 @@ export default async function VesselDetailPage({ params }: PageProps) {
   const { slug } = await params;
   const vessel = DEMO_MARINE.find((v) => v.slug === slug);
   if (!vessel) notFound();
-  return <VesselDetailClient vessel={vessel as any} />;
+  return <VesselDetailClient vessel={vessel} />;
 }

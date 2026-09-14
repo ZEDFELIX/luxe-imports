@@ -6,19 +6,19 @@ import { Users, Search, Mail, Phone, MapPin } from 'lucide-react';
 import { getAllClients } from '@/lib/actions/clients';
 
 export default function AdminClients() {
+  const isConfigured = !!process.env.NEXT_PUBLIC_SUPABASE_URL && !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder');
   const [clients, setClients] = useState<Record<string, unknown>[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(isConfigured);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    const isConfigured = process.env.NEXT_PUBLIC_SUPABASE_URL && !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder');
-    if (!isConfigured) { setLoading(false); return; }
+    if (!isConfigured) return;
 
     getAllClients()
       .then((data) => setClients(data || []))
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, []);
+  }, [isConfigured]);
 
   const filtered = clients.filter((client) => {
     if (!search) return true;

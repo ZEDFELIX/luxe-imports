@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Camera, Heart, ShoppingCart, MapPin } from 'lucide-react';
+import { Camera, ShoppingCart, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useCurrency } from '@/lib/currency-context';
 import { useCart } from '@/lib/cart-context';

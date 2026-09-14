@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { CURRENCIES, type Currency } from '@/lib/currency';
+import { CURRENCIES } from '@/lib/currency';
 import { useCurrency } from '@/lib/currency-context';
 import { cn } from '@/lib/utils';
 

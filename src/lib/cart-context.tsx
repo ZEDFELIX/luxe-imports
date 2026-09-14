@@ -33,6 +33,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const saved = localStorage.getItem('luxe-cart');
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- hydrate cart from localStorage after mount
       if (saved) setItems(JSON.parse(saved));
     } catch {}
   }, []);

@@ -11,6 +11,7 @@ function getDb(): import('better-sqlite3').Database {
   if (!db) {
     try {
       // Only import better-sqlite3 on server (not on Vercel)
+      // eslint-disable-next-line @typescript-eslint/no-require-imports -- native module loaded lazily so demo mode works on Vercel
       const Database = require('better-sqlite3');
       const dbPath = path.join(process.cwd(), 'luxe-imports.db');
       const instance = new Database(dbPath);

@@ -15,20 +15,20 @@ const SHIPMENT_STATUSES = [
 ];
 
 export default function AdminShipments() {
+  const isConfigured = !!process.env.NEXT_PUBLIC_SUPABASE_URL && !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder');
   const [shipments, setShipments] = useState<Record<string, unknown>[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(isConfigured);
   const [search, setSearch] = useState('');
   const [updatingId, setUpdatingId] = useState<string | null>(null);
 
   useEffect(() => {
-    const isConfigured = process.env.NEXT_PUBLIC_SUPABASE_URL && !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder');
-    if (!isConfigured) { setLoading(false); return; }
+    if (!isConfigured) return;
 
     getAllShipments()
       .then((data) => setShipments(data || []))
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, []);
+  }, [isConfigured]);
 
   const filtered = shipments.filter((s) => {
     if (!search) return true;
@@ -44,16 +44,6 @@ export default function AdminShipments() {
       setShipments((prev) => prev.map((s) => s.id === id ? { ...s, status } : s));
     } catch {}
     setUpdatingId(null);
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'DELIVERED': return 'border-green-500/30 text-green-400';
-      case 'IN_TRANSIT': return 'border-blue-500/30 text-blue-400';
-      case 'CUSTOMS': return 'border-amber-500/30 text-amber-400';
-      case 'CANCELLED': return 'border-red-500/30 text-red-400';
-      default: return 'border-gold/20 text-gold/80';
-    }
   };
 
   return (

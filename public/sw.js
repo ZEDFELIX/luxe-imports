@@ -1,6 +1,6 @@
 const CACHE_NAME = 'luxe-imports-v2';
 
-self.addEventListener('install', (event) => {
+self.addEventListener('install', () => {
   self.skipWaiting();
 });
 

@@ -17,6 +17,7 @@ export function CurrencyProvider({ children }: { children: ReactNode }) {
     try {
       const saved = localStorage.getItem('luxe-currency');
       if (saved && ['USD','KES','EUR','GBP','AED','ZAR','JPY'].includes(saved)) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- hydrate currency preference from localStorage
         setCurrencyState(saved as Currency);
       }
     } catch {}
