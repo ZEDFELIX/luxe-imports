@@ -106,8 +106,8 @@ export default function HomePage() {
 
   return (
     <div className="bg-dark">
-      {/* 1. Compact Hero */}
-      <section className="relative h-[60vh] min-h-[420px] overflow-hidden flex items-center">
+      {/* 1. Hero */}
+      <section className="relative h-[65vh] min-h-[460px] overflow-hidden flex items-center">
         <Image
           src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1920&q=80&auto=format"
           alt="Luxury vehicle at dusk"
@@ -116,37 +116,38 @@ export default function HomePage() {
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-dark/55 to-dark" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,rgba(8,8,8,0.6)_100%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/85 via-dark/55 to-dark" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,rgba(6,6,6,0.6)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_60%,rgba(201,168,108,0.06),transparent_50%)]" />
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full pt-16">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full pt-20">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="max-w-2xl"
           >
-            <p className="text-[11px] tracking-[0.3em] uppercase text-gold/80 mb-4">
+            <p className="text-[10px] tracking-[0.35em] uppercase text-gold/70 mb-5 font-medium">
               Global Luxury. Delivered.
             </p>
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-white leading-[1.08] mb-4">
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-white leading-[1.06] mb-5">
               Drive Something<br />
-              <span className="text-gradient-gold">Exceptional.</span>
+              <span className="text-gradient-gold font-normal">Exceptional.</span>
             </h1>
-            <p className="text-muted/70 text-sm sm:text-base mb-8 max-w-md">
+            <p className="text-muted/60 text-sm sm:text-base mb-10 max-w-md leading-relaxed">
               Premium vehicles sourced globally and delivered with confidence.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/automotive"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gold text-dark text-[12px] font-medium tracking-[0.15em] uppercase hover:bg-gold-light transition-all duration-300 group"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gold text-dark text-[11px] font-semibold tracking-[0.2em] uppercase hover:bg-champagne transition-all duration-300 group"
               >
                 Explore Vehicles
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-white/30 text-white text-[12px] font-medium tracking-[0.15em] uppercase hover:border-gold hover:text-gold transition-all duration-300"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white/80 text-[11px] font-semibold tracking-[0.2em] uppercase hover:border-gold hover:text-gold transition-all duration-300"
               >
                 Request a Vehicle
               </Link>
@@ -155,7 +156,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. Global Vehicle Search — overlapping hero */}
+      {/* 2. Global Search */}
       <section className="relative z-20 -mt-8 px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -168,18 +169,18 @@ export default function HomePage() {
       </section>
 
       {/* 3. Vehicle Categories */}
-      <section className="py-14 sm:py-20">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-8">
-            <p className="text-[11px] tracking-[0.3em] uppercase text-gold/70 mb-2">Browse</p>
+          <div className="mb-10">
+            <p className="text-[10px] tracking-[0.35em] uppercase text-gold/60 mb-3 font-medium">Browse</p>
             <h2 className="font-serif text-3xl sm:text-4xl font-light text-white">Vehicle Categories</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6">
             {CATEGORIES.map((category) => (
               <Link
                 key={category.label}
                 href={`/automotive?type=${encodeURIComponent(category.query)}`}
-                className="group relative h-44 sm:h-52 overflow-hidden border border-border/20 editorial-hover block"
+                className="group relative h-48 sm:h-56 overflow-hidden border border-border/15 editorial-hover block"
               >
                 <Image
                   src={category.image}
@@ -188,40 +189,42 @@ export default function HomePage() {
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                   sizes="(max-width: 640px) 100vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-5 flex items-end justify-between">
+                <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between">
                   <div>
-                    <h3 className="font-serif text-xl text-white group-hover:text-gold transition-colors">
+                    <h3 className="font-serif text-xl font-medium text-white group-hover:text-gold transition-colors">
                       {category.label}
                     </h3>
-                    <p className="text-[11px] text-muted/50 mt-1">{category.description}</p>
+                    <p className="text-[10px] text-muted/45 mt-1.5 tracking-wide">{category.description}</p>
                   </div>
-                  <ArrowRight size={16} className="text-gold shrink-0 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight size={16} className="text-gold/70 shrink-0 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>
             ))}
           </div>
-          <div className="flex items-center justify-center gap-8 mt-6">
-            <Link href="/aviation" className="text-[11px] tracking-[0.2em] uppercase text-muted/50 hover:text-gold transition-colors inline-flex items-center gap-2">
+          <div className="flex items-center justify-center gap-10 mt-8">
+            <Link href="/aviation" className="text-[10px] tracking-[0.25em] uppercase text-muted/40 hover:text-gold transition-colors inline-flex items-center gap-2 font-medium">
               Aviation <ArrowRight size={12} />
             </Link>
-            <span className="w-px h-4 bg-border" />
-            <Link href="/marine" className="text-[11px] tracking-[0.2em] uppercase text-muted/50 hover:text-gold transition-colors inline-flex items-center gap-2">
+            <span className="w-px h-4 bg-border/50" />
+            <Link href="/marine" className="text-[10px] tracking-[0.25em] uppercase text-muted/40 hover:text-gold transition-colors inline-flex items-center gap-2 font-medium">
               Marine <ArrowRight size={12} />
             </Link>
           </div>
         </div>
       </section>
 
+      <div className="luxury-divider mx-4 sm:mx-6 lg:mx-8" />
+
       {/* 4. New Arrivals */}
-      <section className="py-14 sm:py-20 border-t border-border/20">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-8">
+          <div className="flex items-end justify-between mb-10">
             <div>
-              <p className="text-[11px] tracking-[0.3em] uppercase text-gold/70 mb-2">Just Landed</p>
+              <p className="text-[10px] tracking-[0.35em] uppercase text-gold/60 mb-3 font-medium">Just Landed</p>
               <h2 className="font-serif text-3xl sm:text-4xl font-light text-white">New Arrivals</h2>
             </div>
-            <Link href="/automotive" className="hidden sm:inline-flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase text-muted/50 hover:text-gold transition-colors">
+            <Link href="/automotive" className="hidden sm:inline-flex items-center gap-2 text-[10px] tracking-[0.25em] uppercase text-muted/40 hover:text-gold transition-colors font-medium">
               View All <ArrowRight size={12} />
             </Link>
           </div>
@@ -244,15 +247,17 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div className="luxury-divider mx-4 sm:mx-6 lg:mx-8" />
+
       {/* 5. Best Sellers */}
-      <section className="py-14 sm:py-20 border-t border-border/20">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-8">
+          <div className="flex items-end justify-between mb-10">
             <div>
-              <p className="text-[11px] tracking-[0.3em] uppercase text-gold/70 mb-2">Client Favourites</p>
+              <p className="text-[10px] tracking-[0.35em] uppercase text-gold/60 mb-3 font-medium">Client Favourites</p>
               <h2 className="font-serif text-3xl sm:text-4xl font-light text-white">Best Sellers</h2>
             </div>
-            <Link href="/automotive" className="hidden sm:inline-flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase text-muted/50 hover:text-gold transition-colors">
+            <Link href="/automotive" className="hidden sm:inline-flex items-center gap-2 text-[10px] tracking-[0.25em] uppercase text-muted/40 hover:text-gold transition-colors font-medium">
               View All <ArrowRight size={12} />
             </Link>
           </div>
@@ -275,17 +280,19 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div className="luxury-divider mx-4 sm:mx-6 lg:mx-8" />
+
       {/* 6. Featured Collections */}
-      <section className="py-14 sm:py-20 border-t border-border/20">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
           {collections.map((collection) => (
             <div key={collection.title}>
-              <div className="flex items-end justify-between mb-8">
+              <div className="flex items-end justify-between mb-10">
                 <div>
                   <h2 className="font-serif text-2xl sm:text-3xl font-light text-white">{collection.title}</h2>
-                  <p className="text-xs text-muted/50 mt-1">{collection.subtitle}</p>
+                  <p className="text-xs text-muted/45 mt-1.5">{collection.subtitle}</p>
                 </div>
-                <Link href={collection.href} className="inline-flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase text-gold hover:text-gold-light transition-colors">
+                <Link href={collection.href} className="inline-flex items-center gap-2 text-[10px] tracking-[0.25em] uppercase text-gold hover:text-champagne transition-colors font-medium">
                   View All <ArrowRight size={12} />
                 </Link>
               </div>
@@ -310,13 +317,15 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div className="luxury-divider mx-4 sm:mx-6 lg:mx-8" />
+
       {/* 7. Special Offers */}
-      <section className="py-14 sm:py-20 border-t border-border/20">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-8">
-            <p className="text-[11px] tracking-[0.3em] uppercase text-gold/70 mb-2">Limited Time</p>
+          <div className="mb-10">
+            <p className="text-[10px] tracking-[0.35em] uppercase text-gold/60 mb-3 font-medium">Limited Time</p>
             <h2 className="font-serif text-3xl sm:text-4xl font-light text-white">Special Offers</h2>
-            <p className="text-xs text-muted/50 mt-2">Preferential pricing on selected inventory — while available.</p>
+            <p className="text-xs text-muted/45 mt-2">Preferential pricing on selected inventory — while available.</p>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {specialOffers.map((vehicle) => (
@@ -333,10 +342,10 @@ export default function HomePage() {
                   type="automotive"
                   badge="Special Offer"
                 />
-                <p className="mt-2 text-right text-[10px] text-muted/40 pr-1">
+                <p className="mt-2.5 text-right text-[10px] text-muted/35 pr-1">
                   Was <span className="line-through">{getPriceInCurrency(vehicle.price, currency)}</span>
                   {' \u00B7 '}
-                  <span className="text-gold">{Math.round((1 - OFFER_DISCOUNT) * 100)}% off</span>
+                  <span className="text-gold font-medium">{Math.round((1 - OFFER_DISCOUNT) * 100)}% off</span>
                 </p>
               </div>
             ))}
@@ -344,59 +353,63 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div className="luxury-divider mx-4 sm:mx-6 lg:mx-8" />
+
       {/* 8. Our Process */}
-      <section className="py-14 sm:py-20 border-t border-border/20">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10">
-            <p className="text-[11px] tracking-[0.3em] uppercase text-gold/70 mb-2">How It Works</p>
+          <div className="mb-12">
+            <p className="text-[10px] tracking-[0.35em] uppercase text-gold/60 mb-3 font-medium">How It Works</p>
             <h2 className="font-serif text-3xl sm:text-4xl font-light text-white">Our Process</h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-x-6 gap-y-8">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-x-6 gap-y-10">
             {PROCESS_STEPS.map((step) => (
-              <div key={step.step} className="border-t border-border/30 pt-4 relative">
-                <span className="absolute -top-px left-0 w-8 h-px bg-gold" />
-                <p className="font-serif text-2xl text-gradient-gold mb-2">{step.step}</p>
-                <h3 className="text-sm text-white tracking-wide mb-1">{step.title}</h3>
-                <p className="text-[11px] text-muted/50 leading-relaxed">{step.description}</p>
+              <div key={step.step} className="border-t border-border/20 pt-5 relative group">
+                <span className="absolute -top-px left-0 w-10 h-px bg-gold/60 group-hover:w-full group-hover:bg-gold transition-all duration-500" />
+                <p className="font-serif text-3xl text-gradient-gold mb-3">{step.step}</p>
+                <h3 className="text-sm text-white tracking-wide mb-1.5 font-medium">{step.title}</h3>
+                <p className="text-[11px] text-muted/45 leading-relaxed">{step.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      <div className="luxury-divider mx-4 sm:mx-6 lg:mx-8" />
+
       {/* 9. Our Global Network */}
-      <section className="py-14 sm:py-20 border-t border-border/20">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
             <div>
-              <p className="text-[11px] tracking-[0.3em] uppercase text-gold/70 mb-2 inline-flex items-center gap-2">
+              <p className="text-[10px] tracking-[0.35em] uppercase text-gold/60 mb-3 font-medium inline-flex items-center gap-2">
                 <Globe size={12} /> Worldwide Reach
               </p>
               <h2 className="font-serif text-3xl sm:text-4xl font-light text-white">Our Global Network</h2>
-              <p className="text-sm text-muted/60 mt-2 max-w-lg">
+              <p className="text-sm text-muted/50 mt-2.5 max-w-lg leading-relaxed">
                 Connecting you to exceptional vehicles worldwide through trusted partners on six continents.
               </p>
             </div>
-            <div className="flex gap-8 text-right">
+            <div className="flex gap-10 text-right">
               <div>
-                <p className="font-serif text-2xl text-gold">{DEMO_AIRCRAFT.length}</p>
-                <p className="text-[10px] tracking-[0.2em] uppercase text-muted/40">Aircraft</p>
+                <p className="font-serif text-3xl text-gradient-gold">{DEMO_AIRCRAFT.length}</p>
+                <p className="text-[9px] tracking-[0.25em] uppercase text-muted/35 mt-1">Aircraft</p>
               </div>
               <div>
-                <p className="font-serif text-2xl text-gold">{DEMO_MARINE.length}</p>
-                <p className="text-[10px] tracking-[0.2em] uppercase text-muted/40">Yachts</p>
+                <p className="font-serif text-3xl text-gradient-gold">{DEMO_MARINE.length}</p>
+                <p className="text-[9px] tracking-[0.25em] uppercase text-muted/35 mt-1">Yachts</p>
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-4">
             {NETWORK.map((country) => (
               <div
                 key={country.name}
-                className="bg-dark-card border border-border/20 p-5 editorial-hover hover:border-gold/30 text-center sm:text-left"
+                className="glass-card border border-border/15 p-6 editorial-hover hover:border-gold/25 text-center sm:text-left"
               >
-                <p className="text-2xl mb-2">{country.flag}</p>
-                <h3 className="text-sm text-white mb-1">{country.name}</h3>
-                <p className="text-[10px] text-muted/50 leading-relaxed">{country.note}</p>
+                <p className="text-2xl mb-3">{country.flag}</p>
+                <h3 className="text-sm text-white mb-1 font-medium">{country.name}</h3>
+                <p className="text-[10px] text-muted/40 leading-relaxed">{country.note}</p>
               </div>
             ))}
           </div>

@@ -61,7 +61,7 @@ export function VehicleCard(props: VehicleCardProps) {
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      <Link href={href} className="group block bg-dark-card border border-border/20 overflow-hidden editorial-hover">
+      <Link href={href} className="group block bg-dark-card border border-border/15 overflow-hidden editorial-hover hover:border-gold/25 hover:gold-glow">
         <div className="aspect-[4/3] relative overflow-hidden">
           {props.images[0] ? (
             <Image
@@ -79,14 +79,14 @@ export function VehicleCard(props: VehicleCardProps) {
           <div className="absolute inset-0 bg-gradient-to-t from-dark/50 to-transparent" />
 
           {/* Photo count */}
-          <div className="absolute top-2 left-2 flex items-center gap-1 bg-black/70 backdrop-blur-sm px-1.5 py-0.5 text-[9px] text-white/80 z-10">
+          <div className="absolute top-3 left-3 flex items-center gap-1 bg-black/70 backdrop-blur-sm px-2 py-0.5 text-[9px] text-white/80 z-10 border border-border/20">
             <Camera size={9} /> {props.images?.length || 0}
           </div>
 
           {/* Badge */}
           {props.badge && (
-            <div className="absolute top-2 right-2 z-10">
-              <span className="px-2 py-0.5 text-[8px] tracking-[0.15em] uppercase bg-gold/20 text-gold border border-gold/30 backdrop-blur-sm">
+            <div className="absolute top-3 right-3 z-10">
+              <span className="px-2.5 py-0.5 text-[8px] tracking-[0.15em] uppercase bg-gold/90 text-dark font-semibold border border-gold/30 backdrop-blur-sm">
                 {props.badge}
               </span>
             </div>
@@ -96,30 +96,30 @@ export function VehicleCard(props: VehicleCardProps) {
           <button
             onClick={handleAddToCart}
             className={cn(
-              'absolute bottom-2 right-2 z-10 p-2 transition-all',
+              'absolute bottom-3 right-3 z-10 p-2 transition-all duration-300 border',
               inCart
-                ? 'bg-gold text-dark'
-                : 'bg-black/60 backdrop-blur-sm text-white/70 hover:bg-gold hover:text-dark'
+                ? 'bg-gold text-dark border-gold'
+                : 'bg-black/60 backdrop-blur-sm text-white/70 hover:bg-gold hover:text-dark border-white/10 hover:border-gold'
             )}
           >
             <ShoppingCart size={14} />
           </button>
         </div>
 
-        <div className="p-3 sm:p-4">
-          <p className="text-[9px] tracking-[0.15em] uppercase text-gold/50 mb-1">{props.year} {props.type === 'automotive' ? props.category : props.type === 'aviation' ? 'Aircraft' : 'Yacht'}</p>
-          <h3 className="font-serif text-sm sm:text-base text-white mb-1 group-hover:text-gold transition-colors leading-tight line-clamp-1">
+        <div className="p-4 sm:p-5">
+          <p className="text-[9px] tracking-[0.15em] uppercase text-gold/60 mb-1.5 font-medium">{props.year} {props.type === 'automotive' ? props.category : props.type === 'aviation' ? 'Aircraft' : 'Yacht'}</p>
+          <h3 className="font-serif text-sm sm:text-base text-white mb-1 group-hover:text-gold transition-colors leading-tight line-clamp-1 font-medium">
             {props.title}
           </h3>
-          <p className="text-[10px] text-muted/40 mb-2 line-clamp-1">
-            {[props.trim, props.engine, props.mileage ? `${props.mileage.toLocaleString()} km` : null, props.transmission].filter(Boolean).join(' • ')}
+          <p className="text-[10px] text-muted/45 mb-3 line-clamp-1">
+            {[props.trim, props.engine, props.mileage ? `${props.mileage.toLocaleString()} km` : null, props.transmission].filter(Boolean).join(' \u00B7 ')}
           </p>
-          <div className="flex items-center justify-between pt-2 border-t border-border/15">
-            <div className="flex items-center gap-1 text-muted/40">
+          <div className="flex items-center justify-between pt-3 border-t border-border/15">
+            <div className="flex items-center gap-1 text-muted/45">
               <MapPin size={10} />
               <span className="text-[9px] truncate max-w-[100px]">{props.location}</span>
             </div>
-            <span className="text-xs sm:text-sm text-gold font-medium">
+            <span className="text-xs sm:text-sm text-gradient-gold font-semibold tracking-wide">
               {getPriceInCurrency(props.priceUSD, currency)}
             </span>
           </div>

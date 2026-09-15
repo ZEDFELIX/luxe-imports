@@ -20,7 +20,8 @@ export function BottomNav() {
 
   return (
     <nav className="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-dark-card/95 backdrop-blur-xl border-t border-border/30">
-      <div className="flex items-center justify-around h-14">
+      <div className="gold-hairline absolute top-0 left-0 right-0 opacity-40" aria-hidden />
+      <div className="flex items-center justify-around h-14 safe-area-bottom">
         {NAV_ITEMS.map((item) => {
           const isActive = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
           return (
@@ -32,6 +33,7 @@ export function BottomNav() {
                 isActive ? 'text-gold' : 'text-muted/50'
               )}
             >
+              {isActive && <span className="absolute top-0 w-8 h-px bg-gold" aria-hidden />}
               <item.icon size={20} strokeWidth={1.5} />
               {item.href === '/cart' && itemCount > 0 && (
                 <span className="absolute top-1.5 right-1/2 translate-x-4 w-4 h-4 flex items-center justify-center bg-gold text-dark text-[8px] font-bold rounded-full">

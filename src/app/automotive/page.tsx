@@ -49,23 +49,25 @@ export default function AutomotivePage() {
     <div className="pt-20 sm:pt-24 bg-dark min-h-screen">
       {/* Hero */}
       <section className="relative py-16 sm:py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(200,169,107,0.06),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(201,168,108,0.07),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(232,211,163,0.03),transparent_50%)]" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-[11px] tracking-[0.3em] uppercase text-gold/70 mb-4">
+            <p className="text-[11px] tracking-[0.3em] uppercase text-gold/70 mb-4 font-medium">
               Automotive Division
             </p>
-            <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-light text-white mb-4">
+            <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-light text-white mb-6 leading-[1.05]">
               The World&apos;s Finest<br />
               <span className="text-gradient-gold">Automobiles</span>
             </h1>
-            <p className="text-muted/60 text-sm sm:text-base max-w-lg">
+            <p className="text-muted/60 text-sm sm:text-base max-w-lg leading-relaxed">
               From supercars to executive sedans, we source and deliver the most desirable vehicles from manufacturers across the globe.
             </p>
+            <div className="luxury-divider w-40 mt-8" />
           </motion.div>
         </div>
       </section>
@@ -83,7 +85,7 @@ export default function AutomotivePage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by manufacturer or model..."
-                className="w-full bg-dark-card border border-border/30 pl-10 pr-4 py-3 text-sm text-white placeholder:text-muted/30 focus:border-gold/50 focus:outline-none transition-colors"
+                className="w-full bg-dark-card border border-border/30 pl-10 pr-4 py-3 text-sm text-white placeholder:text-muted/30 focus:border-gold/50 focus:gold-glow focus:outline-none transition-colors"
               />
             </div>
             <button
@@ -181,7 +183,7 @@ export default function AutomotivePage() {
               >
                 <Link
                   href={`/automotive/${vehicle.slug}`}
-                  className="group block bg-dark-card border border-border/20 overflow-hidden editorial-hover"
+                  className="group block bg-dark-card border border-border/20 overflow-hidden editorial-hover hover:border-gold/25 hover:gold-glow"
                 >
                   <div className="aspect-[16/10] relative overflow-hidden">
                     {vehicle.images[0] ? (
@@ -195,32 +197,32 @@ export default function AutomotivePage() {
                     ) : (
                       <>
                         <div className="absolute inset-0 bg-gradient-to-br from-dark-card to-dark" />
-                        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(200,169,107,0.04),transparent)]" />
+                        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,168,108,0.04),transparent)]" />
                         <p className="absolute inset-0 flex items-center justify-center font-serif text-xl text-white/15">{vehicle.manufacturer}</p>
                       </>
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-dark/40 to-transparent" />
-                    <div className="absolute top-3 right-3 flex items-center gap-1 bg-black/70 backdrop-blur-sm px-2 py-1 text-[10px] text-white/80 z-10">
+                    <div className="absolute top-3 right-3 flex items-center gap-1 bg-black/70 backdrop-blur-sm px-2 py-1 text-[10px] text-white/80 z-10 border border-border/20">
                       <Camera size={10} /> {vehicle.images?.length || 0} Photos
                     </div>
                     {vehicle.featured && (
-                      <span className="absolute top-3 left-3 px-2 py-1 text-[9px] tracking-[0.15em] uppercase bg-gold/20 text-gold border border-gold/30 z-10">
+                      <span className="absolute top-3 left-3 px-2.5 py-1 text-[9px] tracking-[0.15em] uppercase bg-gold/90 text-dark font-semibold border border-gold/30 z-10">
                         Featured
                       </span>
                     )}
                   </div>
                   <div className="p-5">
-                    <p className="text-[10px] tracking-[0.15em] uppercase text-gold/50 mb-2">{vehicle.category}</p>
-                    <h3 className="font-serif text-lg text-white mb-1 group-hover:text-gold transition-colors">
+                    <p className="text-[10px] tracking-[0.15em] uppercase text-gold/50 mb-2 font-medium">{vehicle.category}</p>
+                    <h3 className="font-serif text-lg text-white mb-1 group-hover:text-gold transition-colors font-medium">
                       {vehicle.title}
                     </h3>
-                    <p className="text-xs text-muted/50 mb-4">{vehicle.year} • {vehicle.engine}</p>
+                    <p className="text-xs text-muted/50 mb-4">{vehicle.year} \u00B7 {vehicle.engine}</p>
                     <div className="flex items-center justify-between pt-3 border-t border-border/20">
                       <div className="flex items-center gap-1.5 text-muted/40">
                         <MapPin size={12} />
                         <span className="text-[10px]">{vehicle.location}</span>
                       </div>
-                      <span className="text-sm text-gold">{getPriceInCurrency(vehicle.price, currency)}</span>
+                      <span className="text-sm text-gradient-gold font-semibold">{getPriceInCurrency(vehicle.price, currency)}</span>
                     </div>
                   </div>
                 </Link>

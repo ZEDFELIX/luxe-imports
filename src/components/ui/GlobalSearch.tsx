@@ -49,9 +49,11 @@ export function GlobalSearch({ className, large }: { className?: string; large?:
     <div ref={wrapperRef} className={cn('relative', className)}>
       <div className={cn(
         'flex items-center border transition-all',
-        large ? 'gap-3 px-5 py-4 bg-dark-card border-border/30 focus-within:border-gold/50' : 'gap-2 px-3 py-2.5 bg-dark-card border-border/30 focus-within:border-gold/50'
+        large
+          ? 'gap-3 px-5 py-4 bg-dark-card border-border/30 focus-within:border-gold/50 focus-within:gold-glow'
+          : 'gap-2 px-3 py-2.5 bg-dark-card border-border/30 focus-within:border-gold/50'
       )}>
-        <Search size={large ? 18 : 16} className="text-muted/40 shrink-0" />
+        <Search size={large ? 18 : 16} className="text-gold/40 shrink-0" />
         <input
           ref={inputRef}
           type="text"
@@ -72,7 +74,7 @@ export function GlobalSearch({ className, large }: { className?: string; large?:
         <Link
           href={`/search?q=${encodeURIComponent(query)}`}
           className={cn(
-            'shrink-0 bg-gold text-dark font-medium tracking-[0.1em] uppercase hover:bg-gold-light transition-all flex items-center gap-1',
+            'shrink-0 bg-gold text-dark font-semibold tracking-[0.1em] uppercase hover:bg-champagne transition-all flex items-center gap-1',
             large ? 'px-5 py-2 text-[11px]' : 'px-3 py-1.5 text-[10px]'
           )}
         >
@@ -85,30 +87,33 @@ export function GlobalSearch({ className, large }: { className?: string; large?:
           {results.length === 0 ? (
             <div className="p-6 text-center">
               <p className="text-xs text-muted/40">No vehicles found for &ldquo;{query}&rdquo;</p>
-              <Link href={`/search?q=${encodeURIComponent(query)}`} className="text-[11px] text-gold mt-2 inline-flex items-center gap-1 hover:text-gold-light">
+              <Link href={`/search?q=${encodeURIComponent(query)}`} className="text-[11px] text-gold mt-2 inline-flex items-center gap-1 hover:text-champagne">
                 View all results <ArrowRight size={10} />
               </Link>
             </div>
           ) : (
             <>
+              <p className="px-4 py-2 text-[9px] tracking-[0.2em] uppercase text-muted/30 border-b border-border/10 font-medium">
+                Results
+              </p>
               {results.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   onClick={() => { setQuery(''); setFocused(false); }}
-                  className="flex items-center justify-between px-4 py-3 hover:bg-white/5 transition-colors border-b border-border/10 last:border-0"
+                  className="flex items-center justify-between px-4 py-3 hover:bg-white/[0.03] hover:border-l-2 hover:border-gold transition-colors border-b border-l-2 border-l-transparent border-border/10 last:border-0"
                 >
                   <div>
                     <p className="text-xs text-white">{item.title}</p>
                     <p className="text-[10px] text-muted/40">{item.subtitle}</p>
                   </div>
-                  <span className="text-[9px] tracking-[0.1em] uppercase text-muted/30 px-2 py-0.5 border border-border/20">{item.type}</span>
+                  <span className="text-[9px] tracking-[0.1em] uppercase text-gold/50 px-2 py-0.5 border border-gold/20">{item.type}</span>
                 </Link>
               ))}
               <Link
                 href={`/search?q=${encodeURIComponent(query)}`}
                 onClick={() => { setFocused(false); }}
-                className="flex items-center justify-center gap-1 py-3 text-[11px] text-gold hover:text-gold-light transition-colors border-t border-border/20"
+                className="flex items-center justify-center gap-1 py-3 text-[11px] text-gold hover:text-champagne transition-colors border-t border-border/20"
               >
                 View all results <ArrowRight size={10} />
               </Link>
